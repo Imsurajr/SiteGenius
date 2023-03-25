@@ -1,6 +1,6 @@
 # rrconstruction
 
-A new Flutter project.
+A Construction App using Flutter .
 
 ## Getting Started
 
