@@ -52,26 +52,30 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
   Future<dynamic> _display(BuildContext context) async {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Color(0xFF999999),
-            title: Text("Add New Vehicle", style:  TextStyle(color: Colors.black),),
+            title: Text(
+              "Add New Vehicle",
+              style: TextStyle(color: Colors.black),
+            ),
             content: TextField(
               controller: _addNewVehicleController,
               style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
+                color: Color(0xff222222),
                 fontSize: 20,
+                fontWeight: FontWeight.w500,
               ),
               // decoration: cnst.kHintTextStyle,
             ),
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black),
+                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
                 ),
                 child: Text('ADD'),
                 onPressed: () {
@@ -84,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.black),
+                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
                 ),
                 child: Text('CANCEL'),
                 onPressed: () {
@@ -95,9 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         });
   }
-
 }
-
 
 // class HomeScreen extends StatelessWidget {
 //   @override
