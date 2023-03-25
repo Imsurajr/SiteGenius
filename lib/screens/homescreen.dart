@@ -70,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
-              // decoration: cnst.kHintTextStyle,
             ),
             actions: <Widget>[
               ElevatedButton(
