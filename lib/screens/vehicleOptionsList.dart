@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:rrconstruction/screens/selectedVehicleScreen.dart';
 
 List<String> vehicleOptions = [
   "Maintenance Information",
   "Tyre Information",
   "Average Information",
 ];
+
 class OptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,15 @@ class OptionsScreen extends StatelessWidget {
           return ListTile(
             title: Text(vehicleOptions[index]),
             onTap: () {
-              // Navigate to the selected option screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => selectedVehicle(
+                    appBarTitle: '${vehicleOptions[index]}',
+                    optionNumber: (index + 1),
+                  ),
+                ),
+              );
             },
           );
         },
