@@ -9,12 +9,9 @@ class selectedVehicle extends StatefulWidget {
   List<String> MI = ['Maintenance 1', 'Maintenance 2', 'Maintenance 3'];
   List<String> TI = ['Tyre changed 1', 'Tyre changed 2', 'Tyre changed 3'];
   List<String> AI = ['Average 1', 'Average 2', 'Average 3'];
-  List<String> details = [
-    "Demo long information",
-    "Demo long information",
-    "pepepepooo",
-    "pepeopop"
-  ];
+  List<String> MID = ['Maintenance 1 long description', 'Maintenance 2 long description', 'Maintenance 3 long description'];
+  List<String> TID = ['Tyre changed 1 long description', 'Tyre changed 2 long description', 'Tyre changed 3 long description'];
+  List<String> AID = ['Average 1 long description', 'Average 2 long description', 'Average 3 long description'];
   @override
   State<selectedVehicle> createState() => _selectedVehicleState();
 }
@@ -23,6 +20,7 @@ class _selectedVehicleState extends State<selectedVehicle> {
   @override
   Widget build(BuildContext context) {
     List<String> selectedList = getSelectedList(widget.optionNumber);
+    List<String> listDesc = getDesc(widget.optionNumber);
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +39,7 @@ class _selectedVehicleState extends State<selectedVehicle> {
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   title: Text(selectedList[index]),
-                  subtitle: Text("Demo long information"),
+                  subtitle: Text(listDesc[index]),
                 );
               },
             ),
@@ -93,8 +91,13 @@ class _selectedVehicleState extends State<selectedVehicle> {
                 TextField(
                   controller: widget._addInformationDesc,
                   decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black))),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black),
+                    ),
+                  ),
                   style: TextStyle(
                     color: Color(0xff222222),
                     fontSize: 20,
@@ -111,11 +114,11 @@ class _selectedVehicleState extends State<selectedVehicle> {
                 child: Text('ADD'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  String newInformation = (widget._addInformationTitle.text);
+                  String newInformation = widget._addInformationTitle.text;
                   String description = widget._addInformationDesc.text;
                   setState(() {
-                    // getSelectedList(widget.optionNumber).add(newInformation);
-                    // getSelectedList(widget.optionNumber).sublist(start)
+                    getSelectedList(widget.optionNumber).add(newInformation);
+                    getDesc(widget.optionNumber).add(description);
                   });
                 },
               ),
@@ -145,4 +148,17 @@ class _selectedVehicleState extends State<selectedVehicle> {
         return [];
     }
   }
+  List<String> getDesc(int optionNumber) {
+    switch (optionNumber) {
+      case 1:
+        return widget.MID;
+      case 2:
+        return widget.TID;
+      case 3:
+        return widget.AID;
+      default:
+        return [];
+    }
+  }
+
 }
