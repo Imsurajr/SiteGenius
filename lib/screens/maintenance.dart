@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class selectedVehicle extends StatefulWidget {
-  selectedVehicle({required this.appBarTitle, required this.optionNumber});
-  final String appBarTitle;
-  final int optionNumber;
+class maintenance extends StatefulWidget {
   TextEditingController _addInformationTitle = TextEditingController();
   TextEditingController _addInformationDesc = TextEditingController();
-  List<String> MI = ['Maintenance 1', 'Maintenance 2', 'Maintenance 3'];
-  List<String> TI = ['Tyre changed 1', 'Tyre changed 2', 'Tyre changed 3'];
-  List<String> AI = ['Average 1', 'Average 2', 'Average 3'];
-  List<String> MID = ['Maintenance 1 long description', 'Maintenance 2 long description', 'Maintenance 3 long description'];
-  List<String> TID = ['Tyre changed 1 long description', 'Tyre changed 2 long description', 'Tyre changed 3 long description'];
-  List<String> AID = ['Average 1 long description', 'Average 2 long description', 'Average 3 long description'];
+  List<String> MI = ['3/01/12', '8/05/12', '1/07/22'];
+  List<String> MID = [
+    'Maintenance 1 long description',
+    'Maintenance 2 long description',
+    'Maintenance 3 long description'
+  ];
+
   @override
-  State<selectedVehicle> createState() => _selectedVehicleState();
+  State<maintenance> createState() => _maintenanceState();
 }
 
-class _selectedVehicleState extends State<selectedVehicle> {
+class _maintenanceState extends State<maintenance> {
   @override
   Widget build(BuildContext context) {
-    List<String> selectedList = getSelectedList(widget.optionNumber);
-    List<String> listDesc = getDesc(widget.optionNumber);
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          widget.appBarTitle,
+          "Maintenance Information",
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
@@ -35,11 +31,11 @@ class _selectedVehicleState extends State<selectedVehicle> {
           Expanded(
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
-              itemCount: selectedList.length,
+              itemCount: widget.MI.length,
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
-                  title: Text(selectedList[index]),
-                  subtitle: Text(listDesc[index]),
+                  title: Text(widget.MI[index]),
+                  subtitle: Text(widget.MID[index]),
                 );
               },
             ),
@@ -66,15 +62,37 @@ class _selectedVehicleState extends State<selectedVehicle> {
           return AlertDialog(
             backgroundColor: Color(0xFF999999),
             title: Text(
-              "Add New ${widget.appBarTitle}",
+              "Add New Maintenance Information",
               style: TextStyle(color: Colors.black),
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextField(
+                TextFormField(
+                  textAlign: TextAlign.center,
                   controller: widget._addInformationTitle,
                   decoration: InputDecoration(
+                      hintText: "Date",
+                      // labelText: "Date",
+                      suffixIcon: GestureDetector(
+                        onTap: () async {
+                          DateTime? date = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2010),
+                            lastDate: DateTime(2100),
+                          );
+                          if (date != null) {
+                            // widget._addInformationTitle;
+                            widget._addInformationTitle.text = DateFormat.yMd().format(date);
+                          }
+                        },
+                        child: Icon(Icons.calendar_today),
+                      ),
+                      hintStyle: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 15),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
                       focusedBorder: OutlineInputBorder(
@@ -90,7 +108,13 @@ class _selectedVehicleState extends State<selectedVehicle> {
                 ),
                 TextField(
                   controller: widget._addInformationDesc,
+                  textAlign: TextAlign.center,
                   decoration: InputDecoration(
+                    hintText: "Add long Description",
+                    hintStyle: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                     ),
@@ -117,8 +141,8 @@ class _selectedVehicleState extends State<selectedVehicle> {
                   String newInformation = widget._addInformationTitle.text;
                   String description = widget._addInformationDesc.text;
                   setState(() {
-                    getSelectedList(widget.optionNumber).add(newInformation);
-                    getDesc(widget.optionNumber).add(description);
+                    widget.MI.add(newInformation);
+                    widget.MID.add(description);
                   });
                 },
               ),
@@ -134,31 +158,6 @@ class _selectedVehicleState extends State<selectedVehicle> {
             ],
           );
         });
-  }
-
-  List<String> getSelectedList(int optionNumber) {
-    switch (optionNumber) {
-      case 1:
-        return widget.MI;
-      case 2:
-        return widget.TI;
-      case 3:
-        return widget.AI;
-      default:
-        return [];
-    }
-  }
-  List<String> getDesc(int optionNumber) {
-    switch (optionNumber) {
-      case 1:
-        return widget.MID;
-      case 2:
-        return widget.TID;
-      case 3:
-        return widget.AID;
-      default:
-        return [];
-    }
   }
 
 }

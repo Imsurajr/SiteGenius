@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rrconstruction/screens/selectedVehicleScreen.dart';
+import 'package:rrconstruction/screens/average.dart';
+import 'package:rrconstruction/screens/maintenance.dart';
+import 'package:rrconstruction/screens/tyre.dart';
 
 List<String> vehicleOptions = [
   "Maintenance Information",
@@ -24,10 +26,14 @@ class OptionsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => selectedVehicle(
-                    appBarTitle: '${vehicleOptions[index]}',
-                    optionNumber: (index + 1),
-                  ),
+                  builder: (context)  {
+                    return index==0 ? maintenance( ): index==1
+                         ? tyre() : average();
+                  }
+                  // => selectedVehicle(
+                  //   appBarTitle: '${vehicleOptions[index]}',
+                  //   optionNumber: (index + 1),
+                  // ),
                 ),
               );
             },
