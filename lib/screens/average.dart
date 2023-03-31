@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class average extends StatefulWidget {
-  TextEditingController _addInformationTitle = TextEditingController();
   TextEditingController _addInformationDesc = TextEditingController();
   TextEditingController _startKmController = TextEditingController();
   TextEditingController _finalKmController = TextEditingController();
-  TextEditingController _fuelAmountController = TextEditingController();
   RegExp digitValidator = RegExp("[0-9]+");
   bool isANumber = true;
 
