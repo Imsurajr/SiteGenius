@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class maintenance extends StatefulWidget {
+class Maintenance extends StatefulWidget {
   TextEditingController _addInformationTitle = TextEditingController();
   TextEditingController _addInformationDesc = TextEditingController();
   List<String> MI = ['3/01/12', '8/05/12', '1/07/22'];
@@ -12,10 +12,10 @@ class maintenance extends StatefulWidget {
   ];
 
   @override
-  State<maintenance> createState() => _maintenanceState();
+  State<Maintenance> createState() => _MaintenanceState();
 }
 
-class _maintenanceState extends State<maintenance> {
+class _MaintenanceState extends State<Maintenance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

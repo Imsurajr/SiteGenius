@@ -27,8 +27,8 @@ class OptionsScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context)  {
-                    return index==0 ? maintenance( ): index==1
-                         ? tyre() : average();
+                    return index==0 ? Maintenance( ): index==1
+                         ? Tyre() : Average();
                   }
                   // => selectedVehicle(
                   //   appBarTitle: '${vehicleOptions[index]}',

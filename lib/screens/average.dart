@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class average extends StatefulWidget {
+class Average extends StatefulWidget {
   TextEditingController _addInformationDesc = TextEditingController();
   TextEditingController _startKmController = TextEditingController();
   TextEditingController _finalKmController = TextEditingController();
@@ -15,10 +16,10 @@ class average extends StatefulWidget {
   ];
 
   @override
-  State<average> createState() => _averageState();
+  State<Average> createState() => _AverageState();
 }
 
-class _averageState extends State<average> {
+class _AverageState extends State<Average> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
