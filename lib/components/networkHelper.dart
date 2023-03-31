@@ -17,11 +17,7 @@ class NetworkHelper{
       }
     else
       {
-        return Container(
-          child: Center(child: Text("An error occured ${response.statusCode}" ,
-          style: TextStyle(color: Colors.white , fontSize: 25 , fontWeight: FontWeight.w500),
-          )),
-        );
+        print(response.statusCode);
       }
   }
 }
