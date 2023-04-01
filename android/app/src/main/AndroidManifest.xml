@@ -6,7 +6,7 @@
 
 
     <application
-        android:label="rrconstruction"
+        android:label="BuildMate-A Construction App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
