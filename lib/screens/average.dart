@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class Average extends StatefulWidget {
-  TextEditingController _addInformationDesc = TextEditingController();
   TextEditingController _startKmController = TextEditingController();
   TextEditingController _finalKmController = TextEditingController();
+  TextEditingController _fuelAtStart = TextEditingController();
+  TextEditingController _fuelAtEnd = TextEditingController();
+
   RegExp digitValidator = RegExp("[0-9]+");
   bool isANumber = true;
 
-  List<String> AI = ['7/06/12', '8/21/12', '1/07/22'];
+  List<String> AI = ['Average during the drive was 40.9', 'Average during the drive was 43.2', 'Average during the drive was 45'];
   List<String> AID = [
-    'Average 1 long description',
-    'Average 2 long description',
-    'Average 3 long description'
+    '500 kms driven on 01/03/2023',
+    '150 kms driven on 03/13/2022',
+    '650 kms driven on 06/27/2022'
   ];
 
   @override
@@ -21,6 +23,16 @@ class Average extends StatefulWidget {
 
 class _AverageState extends State<Average> {
   @override
+
+   int? startKm;
+  int? finalKm;
+  int? kmsDriven;
+  double? fuelAmountAtStart;
+  double? fuelAmountAtEnd;
+  double? finalFuelAmount;
+  double? average;
+  DateTime now = DateTime.now();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -63,34 +75,148 @@ class _AverageState extends State<Average> {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Color(0xFF999999),
-            title: Text(
-              "Add New Average Information",
-              style: TextStyle(color: Colors.black),
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextField(
-                  textAlign: TextAlign.center,
-                  controller: widget._startKmController,
-                  onChanged: (input) {
-                    if (input.isEmpty ||
-                        widget.digitValidator.hasMatch(input)) {
-                      widget.isANumber = false;
-                    } else {
-                      widget.isANumber = true;
-                    }
-                  },
-                  decoration: InputDecoration(
-                      hintText: "Kilometer before staring of journey",
+          return SingleChildScrollView(
+            child: AlertDialog(
+              backgroundColor: Color(0xFF999999),
+              title: Text(
+                "Add New Average Information",
+                style: TextStyle(color: Colors.black),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    textAlign: TextAlign.center,
+                    controller: widget._fuelAtStart,
+                    onChanged: (input) {
+                      if (input.isEmpty ||
+                          widget.digitValidator.hasMatch(input)) {
+                        widget.isANumber = false;
+                      } else {
+                        widget.isANumber = true;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Amount of fuel in the tank before filling ",
+                        hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15),
+                        errorText:
+                        widget.isANumber ? "In Litre" : "Please enter a number",
+                        errorStyle: TextStyle(color: Colors.red),
+                        focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black))),
+                    style: TextStyle(
+                      color: Color(0xff222222),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * (0.013),
+                  ),
+                  TextField(
+                    textAlign: TextAlign.center,
+                    controller: widget._fuelAtEnd,
+                    onChanged: (input) {
+                      if (input.isEmpty ||
+                          widget.digitValidator.hasMatch(input)) {
+                        widget.isANumber = false;
+                      } else {
+                        widget.isANumber = true;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Amount of fuel in tank after filling in Litre",
+                        hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15),
+                        errorText:
+                        widget.isANumber ? "In Litre" : "Please enter a valid number",
+                        errorStyle: TextStyle(color: Colors.red),
+                        focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black))),
+                    style: TextStyle(
+                      color: Color(0xff222222),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * (0.013),
+                  ),
+                  TextField(
+                    textAlign: TextAlign.center,
+                    controller: widget._startKmController,
+                    onChanged: (input) {
+                      if (input.isEmpty ||
+                          widget.digitValidator.hasMatch(input)) {
+                        widget.isANumber = false;
+                      } else {
+                        widget.isANumber = true;
+                      }
+                    },
+                    decoration: InputDecoration(
+                        hintText: "Kilometer driven before start",
+                        hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 15),
+                        errorText:
+                            widget.isANumber ? null : "Please enter a number",
+                        errorStyle: TextStyle(color: Colors.red),
+                        focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black))),
+                    style: TextStyle(
+                      color: Color(0xff222222),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * (0.013),
+                  ),
+                  TextField(
+                    textAlign: TextAlign.center,
+                    controller: widget._finalKmController,
+                    onChanged: (input) {
+                      if (input.isEmpty ||
+                          widget.digitValidator.hasMatch(input)) {
+                        widget.isANumber = false;
+                      } else {
+                        widget.isANumber = true;
+                      }
+                      setState(() {
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Kilometer driven after end",
                       hintStyle: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w400,
                           fontSize: 15),
-                      errorText:
-                          widget.isANumber ? null : "Please enter a number",
+                      errorText: widget.isANumber ? null : "Please enter a valid number",
+
                       errorStyle: TextStyle(color: Colors.red),
                       focusedErrorBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
@@ -99,88 +225,53 @@ class _AverageState extends State<Average> {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black))),
-                  style: TextStyle(
-                    color: Color(0xff222222),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                          borderSide: BorderSide(color: Colors.black)),
+                    ),
+                    style: TextStyle(
+                      color: Color(0xff222222),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * (0.013),
-                ),
-                TextField(
-                  textAlign: TextAlign.center,
-                  controller: widget._finalKmController,
-                  onChanged: (input) {
-                    if (input.isEmpty ||
-                        widget.digitValidator.hasMatch(input)) {
-                      widget.isANumber = false;
-                    } else {
-                      widget.isANumber = true;
-                    }
-                    setState(() {
-                    });
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Kilometer after finishing of journey",
-                    hintStyle: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15),
-                    errorText: widget.isANumber ? null : "Please enter a valid number",
+                ],
+              ),
+              actions: <Widget>[
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  ),
+                  child: Text('ADD'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
 
-                    errorStyle: TextStyle(color: Colors.red),
-                    focusedErrorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red)),
-                    errorBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red)),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                  ),
-                  style: TextStyle(
-                    color: Color(0xff222222),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+                     startKm = int.tryParse(widget._startKmController.text) ?? 0;
+                     finalKm = int.tryParse(widget._finalKmController.text) ?? 0;
+                     fuelAmountAtStart = double.tryParse(widget._fuelAtStart.text) ?? 0;
+                    fuelAmountAtEnd = double.tryParse(widget._fuelAtEnd.text) ?? 0;
+                    finalFuelAmount = (fuelAmountAtEnd! - fuelAmountAtStart!);
+
+                     kmsDriven = (finalKm! - startKm!) ;
+                     average = (kmsDriven! / finalFuelAmount!);
+                    String formattedDate = DateFormat('dd/MM/yyyy').format(now);
+
+                    setState(() {
+                      widget.AI.add("Average during the drive was ${average?.toStringAsFixed(2)}"); // add the average to the list
+                      widget.AID.add("$kmsDriven kms driven on ${formattedDate}"); // add the kms driven to the subtitle list
+                    });
+
+                  },
                 ),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  ),
+                  child: Text('CANCEL'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
               ],
             ),
-            actions: <Widget>[
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
-                ),
-                child: Text('ADD'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-
-                  int startKm = int.tryParse(widget._startKmController.text) ?? 0;
-                  int finalKm = int.tryParse(widget._finalKmController.text) ?? 0;
-                  double fuelAmount = double.tryParse(widget._addInformationDesc.text) ?? 0;
-
-                  int kmsDriven = finalKm - startKm;
-                  double average = kmsDriven / fuelAmount;
-
-                  setState(() {
-                    widget.AI.add("Average during the drive ${average.toStringAsFixed(2)}"); // add the average to the list
-                    widget.AID.add("$kmsDriven km driven"); // add the kms driven to the subtitle list
-                  });
-
-                },
-              ),
-              ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
-                ),
-                child: Text('CANCEL'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
           );
         });
   }
