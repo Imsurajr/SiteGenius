@@ -1,8 +1,8 @@
-# rrconstruction
+# BuildMate - A Construction App
 
 A Construction App using Flutter.
 
-## Getting Started
+## Flutter Docs
 
 This project is a starting point for a Flutter application.
 
