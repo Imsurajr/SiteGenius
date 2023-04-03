@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/homescreen.dart';
+import 'screens/loginscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
-
+//Todo : make welcome screen and login and registration sceen and start integrattingfirebase and impriove ui
