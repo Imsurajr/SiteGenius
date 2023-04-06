@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'loginscreen.dart';
-import 'registrationscreen.dart';
+import 'loginScreen.dart';
+import 'registrationScreen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 

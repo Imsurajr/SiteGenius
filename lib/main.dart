@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rrconstruction/screens/welcomescreen.dart';
-import 'screens/loginscreen.dart';
+import 'screens/loginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
