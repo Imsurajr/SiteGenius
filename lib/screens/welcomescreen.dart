@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:rrconstruction/screens/homeScreen.dart';
 import 'loginScreen.dart';
 import 'registrationScreen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,15 +70,16 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 // AnimatedTextKit(
                 //   animatedTexts: [
                 //     WavyAnimatedText(
-                      Text('BuildMate',
-                      // speed: (Duration(milliseconds: 90)),
-                      style : GoogleFonts.cabin(
-                        fontSize: 45.0,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      ),
-                  //   ),
-                  // ],
+                Text(
+                  'BuildMate',
+                  // speed: (Duration(milliseconds: 90)),
+                  style: GoogleFonts.cabin(
+                    fontSize: 45.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                //   ),
+                // ],
                 // )
               ],
             ),
@@ -115,9 +119,33 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 onPressed: () {
                   Navigator.pushNamed(context, RegistrationScreen.rid);
                 }),
+            ElevatedButton(
+              onPressed: () async {
+                await signup();
+              },
+              child: Text("Sign in with google"),
+            )
           ],
         ),
       ),
     );
+  }
+//C:\Users\hp\.android
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  Future<void> signup() async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      User? user = result.user;
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 }
