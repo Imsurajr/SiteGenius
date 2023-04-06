@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Tyre extends StatefulWidget {
+
+
+  static const String tid = "tyre_screen";
+
   TextEditingController _addInformationTitle = TextEditingController();
   TextEditingController _addInformationDesc = TextEditingController();
   List<String> TI = ['1/01/12', '1/31/12', '12/11/22'];

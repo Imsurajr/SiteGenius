@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Maintenance extends StatefulWidget {
+
+
+  static const String mid = "maintenance_screen";
+
   TextEditingController _addInformationTitle = TextEditingController();
   TextEditingController _addInformationDesc = TextEditingController();
   List<String> MI = ['3/01/12', '8/05/12', '1/07/22'];

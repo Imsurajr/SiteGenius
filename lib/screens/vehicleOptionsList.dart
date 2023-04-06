@@ -10,6 +10,10 @@ List<String> vehicleOptions = [
 ];
 
 class OptionsScreen extends StatelessWidget {
+
+
+  static const String vid = "vehicleOption_screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

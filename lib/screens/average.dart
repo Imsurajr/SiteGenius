@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Average extends StatefulWidget {
+
+  static const String aid = "average_screen";
+
   TextEditingController _startKmController = TextEditingController();
   TextEditingController _finalKmController = TextEditingController();
   TextEditingController _fuelAtStart = TextEditingController();

@@ -91,24 +91,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: Text("Register" , style: kButtonTextStyle,),
                   ),
                   onPressed: () async {
-                    setState(() {
-                      showSpinner = true;
-                    });
-
                     try {
-                      final user = await _auth.signInWithEmailAndPassword(
+                      setState(() {
+                        showSpinner = true;
+                      });
+                      final newUser =
+                      await _auth.createUserWithEmailAndPassword(
                           email: email!, password: password!);
 
-                      if (user != null) {
+                      if (newUser != null) {
                         Navigator.pushNamed(context, HomeScreen.hid);
                       }
+
                       setState(() {
                         showSpinner = false;
                       });
                     } catch (e) {
                       print(e);
                     }
-                    ;
                   })
             ],
           ),
