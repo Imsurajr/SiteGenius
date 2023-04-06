@@ -27,11 +27,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              Flexible(
+                child: Hero(
+                  tag: 'logo',
+                  child: Container(
+                    // height: 200.0,
+                    height: MediaQuery.of(context).devicePixelRatio * 55,
+                    child: Image.asset('images/logo.png'),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 48.0,
+              ),
               TextField(
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 decoration: kTextFieldDecoration.copyWith(
+                    focusColor: Colors.teal,
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.teal)
+                    ),
                     hintText: "Enter Email", suffixIcon: Icon(Icons.email)),
+                   style: TextStyle(color: Colors.white),
               ),
               SizedBox(
                 height: 10,
@@ -42,6 +60,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 obscureText: passwordShow == false ? true : false,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter Password",
+                  focusColor: Colors.teal,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.teal)
+                  ),
                   suffixIcon: GestureDetector(
                       child: Icon(Icons.remove_red_eye_outlined),
                       onTap: () {
