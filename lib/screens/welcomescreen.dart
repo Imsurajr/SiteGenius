@@ -131,6 +131,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 //C:\Users\hp\.android
+  // authorization k instatnce use krna hai android studio
   final FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> signup() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
