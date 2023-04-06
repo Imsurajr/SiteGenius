@@ -5,6 +5,8 @@ List<String> vehicles = ["Vehicle 1", "Vehicle 2", "Vehicle 3"];
 TextEditingController _addNewVehicleController = TextEditingController();
 
 class HomeScreen extends StatefulWidget {
+  static const String hid = "homescreen_screen";
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }

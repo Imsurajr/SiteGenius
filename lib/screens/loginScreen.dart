@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../constants.dart';
+import 'homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
+  String? email;
+  String? password;
   bool showSpinner = false;
   bool passwordShow = false;
 
@@ -46,6 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {
+                  email = value;
+                },
                 decoration: kTextFieldDecoration.copyWith(
                     focusColor: Colors.teal,
                     focusedBorder: OutlineInputBorder(
@@ -61,6 +67,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 obscureText: passwordShow == false ? true : false,
+                onChanged: (value) {
+                  password = value;
+                },
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter Password",
                   focusColor: Colors.teal,
@@ -76,6 +85,35 @@ class _LoginScreenState extends State<LoginScreen> {
                       }),
                 ),
               ),
+              SizedBox(
+                height: 24.0,
+              ),
+              ElevatedButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.teal)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: Text("Login" , style: kButtonTextStyle,),
+                  ),
+                  onPressed: () async {
+                    setState(() {
+                      showSpinner = true;
+                    });
+
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: email!, password: password!);
+
+                      if (user != null) {
+                        Navigator.pushNamed(context, HomeScreen.hid);
+                      }
+                      setState(() {
+                        showSpinner = false;
+                      });
+                    } catch (e) {
+                      print(e);
+                    }
+                    ;
+                  })
             ],
           ),
         ),
