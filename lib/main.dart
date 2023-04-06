@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rrconstruction/screens/welcomescreen.dart';
 import 'screens/loginScreen.dart';
+import 'screens/registrationScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: WelcomeScreen(),
+      initialRoute: WelcomeScreen.wid,
+      routes: {
+        WelcomeScreen.wid: (context) => WelcomeScreen(),
+        LoginScreen.lid: (context) => LoginScreen(),
+        RegistrationScreen.rid: (context) => RegistrationScreen(),
+      },
     );
   }
 }

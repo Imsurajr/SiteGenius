@@ -26,8 +26,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       duration: Duration(seconds: 2),
     );
 
-    animation = ColorTween(begin: Colors.blueAccent, end: Colors.black)
-        .animate(controller);
+    animation =
+        ColorTween(begin: Colors.teal, end: Colors.black).animate(controller);
 
     controller.forward();
     controller.addListener(() {
@@ -62,31 +62,56 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     ),
                   ),
                 ),
-                AnimatedTextKit(
-                  animatedTexts: [
-                    WavyAnimatedText(
-                      'BuildMate',
-                      speed: (Duration(milliseconds: 90)),
-                      textStyle: GoogleFonts.cabin(
+                SizedBox(
+                  width: 10,
+                ),
+                // AnimatedTextKit(
+                //   animatedTexts: [
+                //     WavyAnimatedText(
+                      Text('BuildMate',
+                      // speed: (Duration(milliseconds: 90)),
+                      style : GoogleFonts.cabin(
                         fontSize: 45.0,
                         fontWeight: FontWeight.w600,
                       ),
-                    ),
-                  ],
-                )
+                      ),
+                  //   ),
+                  // ],
+                // )
               ],
             ),
             SizedBox(
               height: 48.0,
             ),
             ElevatedButton(
-                child: Text("Login"),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "Login",
+                    style: GoogleFonts.openSans(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                 onPressed: () {
                   Navigator.pushNamed(context, LoginScreen.lid);
                 }),
+            SizedBox(
+              height: 20.0,
+            ),
             ElevatedButton(
-                child: Text("Register"),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "Register",
+                    style: GoogleFonts.openSans(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
                 onPressed: () {
                   Navigator.pushNamed(context, RegistrationScreen.rid);
