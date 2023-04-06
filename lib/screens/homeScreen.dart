@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rrconstruction/screens/vehicleOptionsList.dart';
+import 'package:rrconstruction/constants.dart';
+import 'package:rrconstruction/screens/welcomescreen.dart';
 
 List<String> vehicles = ["Vehicle 1", "Vehicle 2", "Vehicle 3"];
 TextEditingController _addNewVehicleController = TextEditingController();
@@ -16,6 +18,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        primary: true,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Logout'),
+                    content: Text('Are you sure you want to logout?'),
+                    actions: [
+                      TextButton(
+                        child: Text('Cancel' , style: kButtonTextStyle.copyWith(color: Colors.teal),),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: Text('Logout' , style: kButtonTextStyle.copyWith(color: Colors.teal)),
+                        onPressed: () {
+                          // Navigator.of(context).pop();
+                          Navigator.pushNamed(context, WelcomeScreen.wid);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
+            icon: Icon(Icons.settings),
+          ),
+
+        ],
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text('Vehicle Information'),
       ),

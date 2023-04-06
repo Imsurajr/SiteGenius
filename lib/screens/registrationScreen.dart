@@ -69,6 +69,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 },
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter Password",
+                  errorText: "Minimum 6 character",
+                  errorStyle: TextStyle(color: Colors.red),
+                  focusedErrorBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red)),
                   focusColor: Colors.teal,
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.teal)),

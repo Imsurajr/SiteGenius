@@ -110,8 +110,6 @@ class _AverageState extends State<Average> {
                         errorStyle: TextStyle(color: Colors.red),
                         focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
@@ -147,8 +145,6 @@ class _AverageState extends State<Average> {
                         errorStyle: TextStyle(color: Colors.red),
                         focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
-                        errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
@@ -183,8 +179,6 @@ class _AverageState extends State<Average> {
                             widget.isANumber ? null : "Please enter a number",
                         errorStyle: TextStyle(color: Colors.red),
                         focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
-                        errorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
@@ -222,8 +216,6 @@ class _AverageState extends State<Average> {
 
                       errorStyle: TextStyle(color: Colors.red),
                       focusedErrorBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red)),
-                      errorBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
