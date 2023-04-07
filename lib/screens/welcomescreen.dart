@@ -119,11 +119,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 onPressed: () {
                   Navigator.pushNamed(context, RegistrationScreen.rid);
                 }),
+            SizedBox(height: 20,),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
               onPressed: () async {
                 await signup();
               },
-              child: Text("Sign in with google"),
+              child: Image(image: AssetImage('images/google.png'),),
             )
           ],
         ),
@@ -131,7 +133,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     );
   }
 //C:\Users\hp\.android
-  // authorization k instatnce use krna hai android studio
+  // authorization k instance use krna hai android studio
   final FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> signup() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();

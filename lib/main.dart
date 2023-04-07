@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rrconstruction/screens/average.dart';
 import 'package:rrconstruction/screens/homeScreen.dart';
@@ -15,16 +16,15 @@ Future main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
-
+final auth = FirebaseAuth.instance;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      initialRoute: WelcomeScreen.wid,
+      initialRoute: auth.currentUser == null ? WelcomeScreen.wid : HomeScreen.hid,
       routes: {
         WelcomeScreen.wid: (context) => WelcomeScreen(),
         LoginScreen.lid: (context) => LoginScreen(),
@@ -38,4 +38,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//Todo :  sign in with google and format of saving in firebase and improve ui
+//Todo : format of saving in firebase and improve ui

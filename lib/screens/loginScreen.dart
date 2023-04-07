@@ -52,11 +52,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   email = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
+
                     focusColor: Colors.teal,
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal)
                     ),
-                    hintText: "Enter Email", suffixIcon: Icon(Icons.email)),
+                    hintText: "Enter Email", suffixIcon: Icon(Icons.email)
+                ),
                 style: TextStyle(color: Colors.white),
               ),
               SizedBox(
@@ -65,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               TextField(
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
+
                 obscureText: passwordShow == false ? true : false,
                 onChanged: (value) {
                   password = value;
