@@ -121,12 +121,20 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 }),
             SizedBox(height: 20,),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(padding: EdgeInsets.zero),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+              ),
               onPressed: () async {
                 await signup();
               },
-              child: Image(image: AssetImage('images/google.png'),),
+              child: Image(image: AssetImage('images/google.png')),
             )
+
           ],
         ),
       ),
