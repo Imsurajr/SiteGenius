@@ -67,23 +67,38 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Column(
           children: [
-            Expanded(
+            Expanded( 
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 itemCount: vehicles.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(vehicles[index]),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OptionsScreen(),
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: Card(
+                      elevation: 10,
+                      child: Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.all(4),
+                          title: Text(
+                            vehicles[index],
+                            textAlign: TextAlign.center,
+                          ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OptionsScreen(),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   );
+
+
                 },
               ),
             ),
