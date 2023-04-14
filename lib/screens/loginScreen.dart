@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderSide: BorderSide(color: Colors.teal)
                   ),
                   suffixIcon: GestureDetector(
-                      child: Icon(Icons.remove_red_eye_outlined),
+                      child: Icon(passwordShow == false ? Icons.hide_source_outlined : Icons.remove_red_eye_outlined),
                       onTap: () {
                         setState(() {
                           passwordShow = !passwordShow;
