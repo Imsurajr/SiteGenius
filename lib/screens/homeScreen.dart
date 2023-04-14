@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rrconstruction/screens/vehicleOptionsList.dart';
 import 'package:rrconstruction/constants.dart';
 import 'package:rrconstruction/screens/welcomescreen.dart';
@@ -70,11 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded( 
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
                 itemCount: vehicles.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    margin: EdgeInsets.symmetric(vertical: 8),
+                    margin: EdgeInsets.symmetric(vertical: 6),
                     child: Card(
                       elevation: 10,
                       child: Padding(
@@ -84,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: Text(
                             vehicles[index],
                             textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),
                           ),
                           onTap: () {
                             Navigator.push(

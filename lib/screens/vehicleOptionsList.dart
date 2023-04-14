@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rrconstruction/screens/average.dart';
 import 'package:rrconstruction/screens/maintenance.dart';
 import 'package:rrconstruction/screens/tyre.dart';
@@ -23,24 +24,35 @@ class OptionsScreen extends StatelessWidget {
       ),
       body: ListView.builder(
         itemCount: vehicleOptions.length,
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(vehicleOptions[index]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context)  {
-                    return index==0 ? Maintenance( ): index==1
-                         ? Tyre() : Average();
-                  }
-                  // => selectedVehicle(
-                  //   appBarTitle: '${vehicleOptions[index]}',
-                  //   optionNumber: (index + 1),
-                  // ),
+          return Container(
+            margin: EdgeInsets.all(8),
+            child: Card(
+              elevation: 10,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text(vehicleOptions[index] , textAlign: TextAlign.center, style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context)  {
+                          return index==0 ? Maintenance( ): index==1
+                               ? Tyre() : Average();
+                        }
+                        // => selectedVehicle(
+                        //   appBarTitle: '${vehicleOptions[index]}',
+                        //   optionNumber: (index + 1),
+                        // ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ),
           );
         },
       ),
