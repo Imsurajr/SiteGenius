@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: 48.0,
+                height: 47.0,
               ),
               TextField(
                 textAlign: TextAlign.center,
