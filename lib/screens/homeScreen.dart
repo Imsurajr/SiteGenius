@@ -87,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             textAlign: TextAlign.center,
                             style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),
                           ),
+
                           onTap: () {
                             Navigator.push(
                               context,
@@ -99,8 +100,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   );
-
-
                 },
               ),
             ),
