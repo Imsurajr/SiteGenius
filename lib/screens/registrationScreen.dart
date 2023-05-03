@@ -71,13 +71,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   hintText: "Enter Password",
                   errorText: "Minimum 6 character",
                   errorStyle: TextStyle(color: Colors.red),
-                  focusedErrorBorder: UnderlineInputBorder(
+                  focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.red)),
                   focusColor: Colors.teal,
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.teal)),
                   suffixIcon: GestureDetector(
-                      child: Icon(Icons.remove_red_eye_outlined),
+                      child: Icon(passwordShow == false ? Icons.visibility_off : Icons.visibility),
                       onTap: () {
                         setState(() {
                           passwordShow = !passwordShow;

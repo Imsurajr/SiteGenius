@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderSide: BorderSide(color: Colors.teal)
                   ),
                   suffixIcon: GestureDetector(
-                      child: Icon(passwordShow == false ? Icons.hide_source_outlined : Icons.remove_red_eye_outlined),
+                      child: Icon(passwordShow == false ? Icons.visibility_off : Icons.visibility),
                       onTap: () {
                         setState(() {
                           passwordShow = !passwordShow;
@@ -104,7 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     try {
                       final user = await _auth.signInWithEmailAndPassword(
                           email: email!, password: password!);
-
                       if (user != null) {
                         Navigator.pushNamed(context, HomeScreen.hid);
                       }
@@ -113,8 +112,27 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     } catch (e) {
                       print(e);
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Error'),
+                          content: Text('$e' , style: kTextStyle,),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text('OK' , style: kButtonTextStyle,),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.teal, // Background color
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                      setState(() {
+                        showSpinner = false;
+                      });
                     }
-                    ;
+
                   })
             ],
           ),

@@ -11,3 +11,8 @@ const kButtonTextStyle = TextStyle(
   fontWeight: FontWeight.w500,
   fontSize: 18,
 );
+
+const kTextStyle = TextStyle(
+  fontWeight: FontWeight.w500,
+  fontSize: 17,
+);

@@ -88,7 +88,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             ElevatedButton(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding:  EdgeInsets.all(10.0),
                   child: Text(
                     "Login",
                     style: GoogleFonts.openSans(
@@ -106,7 +106,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             ElevatedButton(
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding:  EdgeInsets.all(10.0),
                   child: Text(
                     "Register",
                     style: GoogleFonts.openSans(
