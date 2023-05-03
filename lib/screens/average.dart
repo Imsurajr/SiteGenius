@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rrconstruction/constants.dart';
 
 class Average extends StatefulWidget {
 
@@ -38,7 +39,9 @@ class _AverageState extends State<Average> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: Text(
           "Average Information",
@@ -52,9 +55,20 @@ class _AverageState extends State<Average> {
               physics: BouncingScrollPhysics(),
               itemCount: widget.AI.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(widget.AI[index]),
-                  subtitle: Text(widget.AID[index]),
+                return Container(
+                 color: kOutlineColor,
+                  margin: EdgeInsets.all(8),
+                  child: Card(
+                  elevation: 10,
+                  color: kButtonColor,
+                child: Padding(
+                padding:  EdgeInsets.symmetric(vertical: 8.0 , horizontal: 5),
+                    child: ListTile(
+                      title: Text(widget.AI[index], style: kButtonTextStyle) ,
+                      subtitle: Text(widget.AID[index], style: kButtonTextStyle.copyWith(fontSize: 15),),
+                    ),
+                  ),
+                  ),
                 );
               },
             ),
@@ -80,10 +94,11 @@ class _AverageState extends State<Average> {
         builder: (BuildContext context) {
           return SingleChildScrollView(
             child: AlertDialog(
-              backgroundColor: Color(0xFF999999),
+              backgroundColor: kButtonColor,
               title: Text(
                 "Add New Average Information",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.white , fontSize:  20),
+                textAlign: TextAlign.center,
               ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -102,12 +117,12 @@ class _AverageState extends State<Average> {
                     decoration: InputDecoration(
                         hintText: "Amount of fuel in the tank before filling ",
                         hintStyle: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w400,
                             fontSize: 15),
                         errorText:
                         widget.isANumber ? "In Litre" : "Please enter a number",
-                        errorStyle: TextStyle(color: Colors.red),
+                        errorStyle: TextStyle(color: Colors.white54, fontSize: 15 , fontWeight: FontWeight.w600),
                         focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
@@ -115,7 +130,7 @@ class _AverageState extends State<Average> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black))),
                     style: TextStyle(
-                      color: Color(0xff222222),
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -137,20 +152,20 @@ class _AverageState extends State<Average> {
                     decoration: InputDecoration(
                         hintText: "Amount of fuel in tank after filling in Litre",
                         hintStyle: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w400,
                             fontSize: 15),
                         errorText:
                         widget.isANumber ? "In Litre" : "Please enter a valid number",
-                        errorStyle: TextStyle(color: Colors.red),
-                        focusedErrorBorder: UnderlineInputBorder(
+                        errorStyle: TextStyle(color: Colors.white54, fontSize: 15 , fontWeight: FontWeight.w600),
+                        focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black))),
                     style: TextStyle(
-                      color: Color(0xff222222),
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -172,20 +187,22 @@ class _AverageState extends State<Average> {
                     decoration: InputDecoration(
                         hintText: "Kilometer driven before start",
                         hintStyle: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.w400,
                             fontSize: 15),
                         errorText:
                             widget.isANumber ? null : "Please enter a number",
                         errorStyle: TextStyle(color: Colors.red),
-                        focusedErrorBorder: UnderlineInputBorder(
+                        errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red)),
+                        focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black)),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.black))),
                     style: TextStyle(
-                      color: Color(0xff222222),
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -209,13 +226,13 @@ class _AverageState extends State<Average> {
                     decoration: InputDecoration(
                       hintText: "Kilometer driven after end",
                       hintStyle: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w400,
                           fontSize: 15),
                       errorText: widget.isANumber ? null : "Please enter a valid number",
 
                       errorStyle: TextStyle(color: Colors.red),
-                      focusedErrorBorder: UnderlineInputBorder(
+                      focusedErrorBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.red)),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black)),
@@ -223,7 +240,7 @@ class _AverageState extends State<Average> {
                           borderSide: BorderSide(color: Colors.black)),
                     ),
                     style: TextStyle(
-                      color: Color(0xff222222),
+                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -233,32 +250,42 @@ class _AverageState extends State<Average> {
               actions: <Widget>[
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                    backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                   ),
                   child: Text('ADD'),
                   onPressed: () {
                     Navigator.of(context).pop();
+                   if(widget.isANumber) {
+                      startKm =
+                          int.tryParse(widget._startKmController.text) ?? 0;
+                      finalKm =
+                          int.tryParse(widget._finalKmController.text) ?? 0;
+                      fuelAmountAtStart =
+                          double.tryParse(widget._fuelAtStart.text) ?? 0;
+                      fuelAmountAtEnd =
+                          double.tryParse(widget._fuelAtEnd.text) ?? 0;
+                      finalFuelAmount = (fuelAmountAtEnd! - fuelAmountAtStart!);
 
-                     startKm = int.tryParse(widget._startKmController.text) ?? 0;
-                     finalKm = int.tryParse(widget._finalKmController.text) ?? 0;
-                     fuelAmountAtStart = double.tryParse(widget._fuelAtStart.text) ?? 0;
-                    fuelAmountAtEnd = double.tryParse(widget._fuelAtEnd.text) ?? 0;
-                    finalFuelAmount = (fuelAmountAtEnd! - fuelAmountAtStart!);
+                      kmsDriven = (finalKm! - startKm!);
+                      average = (kmsDriven! / finalFuelAmount!);
+                      String formattedDate =
+                          DateFormat('dd/MM/yyyy').format(now);
 
-                     kmsDriven = (finalKm! - startKm!) ;
-                     average = (kmsDriven! / finalFuelAmount!);
-                    String formattedDate = DateFormat('dd/MM/yyyy').format(now);
-
-                    setState(() {
-                      widget.AI.add("Average during the drive was ${average?.toStringAsFixed(2)}"); // add the average to the list
-                      widget.AID.add("$kmsDriven kms driven on ${formattedDate}"); // add the kms driven to the subtitle list
-                    });
-
+                      setState(() {
+                        widget.AI.add(
+                            "Average during the drive was ${average?.toStringAsFixed(2)}"); // add the average to the list
+                        widget.AID.add(
+                            "$kmsDriven kms driven on ${formattedDate}"); // add the kms driven to the subtitle list
+                      });
+                    }
+                   else {
+                     //todo alert pls write info
+                   }
                   },
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                    backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                   ),
                   child: Text('CANCEL'),
                   onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rrconstruction/constants.dart';
 import 'package:rrconstruction/screens/average.dart';
 import 'package:rrconstruction/screens/maintenance.dart';
 import 'package:rrconstruction/screens/tyre.dart';
@@ -16,7 +17,9 @@ class OptionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: Text('Options'),
       ),
@@ -26,11 +29,13 @@ class OptionsScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
         itemBuilder: (BuildContext context, int index) {
           return Container(
+            color: kOutlineColor,
             margin: EdgeInsets.all(8),
             child: Card(
+              color: kButtonColor,
               elevation: 10,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.all(8.0),
                 child: ListTile(
                   title: Text(vehicleOptions[index] , textAlign: TextAlign.center, style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),),
                   onTap: () {

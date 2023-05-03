@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rrconstruction/constants.dart';
 
 class Tyre extends StatefulWidget {
 
@@ -23,7 +24,9 @@ class _TyreState extends State<Tyre> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: Text(
           "Tyre Information",
@@ -35,11 +38,19 @@ class _TyreState extends State<Tyre> {
           Expanded(
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
               itemCount: widget.TI.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(widget.TI[index]),
-                  subtitle: Text(widget.TID[index]),
+                return Container(
+                  color: kOutlineColor,
+                  margin: EdgeInsets.all(8),
+                  child: Card(
+                    color: kButtonColor,
+                    child: ListTile(
+                      title: Text(widget.TI[index] , style: kButtonTextStyle,),
+                      subtitle: Text(widget.TID[index], style: kButtonTextStyle.copyWith(fontSize: 15),),
+                    ),
+                  ),
                 );
               },
             ),
@@ -50,8 +61,8 @@ class _TyreState extends State<Tyre> {
               onPressed: () {
                 _display(context);
               },
-              backgroundColor: Color(0xff999999),
-              child: Icon(Icons.add),
+              backgroundColor: Colors.white70,
+              child: Icon(Icons.add , size: 35, color: Colors.black87,),
             ),
           )
         ],
@@ -64,10 +75,11 @@ class _TyreState extends State<Tyre> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color(0xFF999999),
+            backgroundColor: kButtonColor,
             title: Text(
               "Add New Tyre Information",
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.white , fontSize:  20),
+              textAlign: TextAlign.center,
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -94,7 +106,7 @@ class _TyreState extends State<Tyre> {
                         child: Icon(Icons.calendar_today),
                       ),
                       hintStyle: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w400,
                           fontSize: 15),
                       enabledBorder: OutlineInputBorder(
@@ -102,7 +114,7 @@ class _TyreState extends State<Tyre> {
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black))),
                   style: TextStyle(
-                    color: Color(0xff222222),
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
@@ -116,7 +128,7 @@ class _TyreState extends State<Tyre> {
                   decoration: InputDecoration(
                     hintText: "Add long Description",
                     hintStyle: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w400,
                         fontSize: 15),
                     enabledBorder: OutlineInputBorder(
@@ -127,7 +139,7 @@ class _TyreState extends State<Tyre> {
                     ),
                   ),
                   style: TextStyle(
-                    color: Color(0xff222222),
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
@@ -137,7 +149,7 @@ class _TyreState extends State<Tyre> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('ADD'),
                 onPressed: () {
@@ -152,7 +164,7 @@ class _TyreState extends State<Tyre> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('CANCEL'),
                 onPressed: () {

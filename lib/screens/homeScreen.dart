@@ -19,7 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         primary: true,
         actions: <Widget>[
           IconButton(
@@ -65,53 +67,54 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text('Vehicle Information'),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 10 , vertical: 15),
         child: Column(
-          children: [
-            Expanded( 
-              child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                 padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
-                itemCount: vehicles.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 6),
-                    child: Card(
-                      elevation: 10,
-                      child: Padding(
-                        padding: EdgeInsets.all(4.0),
-                        child: ListTile(
-                          contentPadding: EdgeInsets.all(4),
-                          title: Text(
-                            vehicles[index],
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),
-                          ),
-
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => OptionsScreen(),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            FloatingActionButton(
-              onPressed: () {
-                _display(context);
-              },
-              backgroundColor: Color(0xff999999),
-              child: Icon(Icons.add),
-            ),
-          ],
-        ),
+         children: [
+           Expanded(
+             child: ListView.builder(
+               physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 6),
+               itemCount: vehicles.length,
+               itemBuilder: (BuildContext context, int index) {
+                 return Container(
+                   color: kOutlineColor,
+                   margin: EdgeInsets.symmetric(vertical: 6),
+                   child: Card(
+                     color: kButtonColor,
+                     elevation: 10,
+                     child: Padding(
+                       padding: EdgeInsets.all(4.0),
+                       child: ListTile(
+                         contentPadding: EdgeInsets.all(4),
+                         title: Text(
+                           vehicles[index],
+                           textAlign: TextAlign.center,
+                           style: GoogleFonts.openSans(fontSize: 18, fontWeight: FontWeight.w600),
+                         ),
+                         onTap: () {
+                           Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) => OptionsScreen(),
+                             ),
+                           );
+                         },
+                       ),
+                     ),
+                   ),
+                 );
+               },
+             ),
+           ),
+           FloatingActionButton(
+             onPressed: () {
+               _display(context);
+             },
+             backgroundColor: Colors.white70,
+             child: Icon(Icons.add , size: 35, color: Colors.black87,),
+           ),
+         ],
+          ),
       ),
     );
   }
@@ -121,15 +124,15 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color(0xFF999999),
+            backgroundColor: kButtonColor,
             title: Text(
               "Add New Vehicle",
-              style: TextStyle(color: Colors.black),
+              style: kButtonTextStyle.copyWith(color: Colors.white , fontSize: 20),
             ),
             content: TextField(
               controller: _addNewVehicleController,
               style: TextStyle(
-                color: Color(0xff222222),
+                color:Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
@@ -137,10 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('ADD'),
                 onPressed: () {
+                  _addNewVehicleController.clear();
                   Navigator.of(context).pop();
                   String newVehicle = (_addNewVehicleController.text);
                   setState(() {
@@ -150,10 +154,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('CANCEL'),
                 onPressed: () {
+                  _addNewVehicleController.clear();
                   Navigator.of(context).pop();
                 },
               )

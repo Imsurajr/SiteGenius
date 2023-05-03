@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:rrconstruction/constants.dart';
 
 class Maintenance extends StatefulWidget {
 
@@ -23,7 +24,9 @@ class _MaintenanceState extends State<Maintenance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
+        backgroundColor: kBackgroundColor,
         centerTitle: true,
         title: Text(
           "Maintenance Information",
@@ -35,23 +38,35 @@ class _MaintenanceState extends State<Maintenance> {
           Expanded(
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 12),
               itemCount: widget.MI.length,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: Text(widget.MI[index]),
-                  subtitle: Text(widget.MID[index]),
+                return Container(
+                  color: kOutlineColor,
+                  margin: EdgeInsets.all(8),
+                  child: Card(
+                    elevation: 10,
+                    color: kButtonColor,
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(vertical: 8.0 , horizontal: 5),
+                      child: ListTile(
+                        title: Text(widget.MI[index] , style: kButtonTextStyle,),
+                        subtitle: Text(widget.MID[index] , style: kButtonTextStyle.copyWith(fontSize: 15),),
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 15),
-            child: FloatingActionButton(
+            child:FloatingActionButton(
               onPressed: () {
                 _display(context);
               },
-              backgroundColor: Color(0xff999999),
-              child: Icon(Icons.add),
+              backgroundColor: Colors.white70,
+              child: Icon(Icons.add , size: 35, color: Colors.black87,),
             ),
           )
         ],
@@ -59,15 +74,18 @@ class _MaintenanceState extends State<Maintenance> {
     );
   }
 
+  // todo text field clear and dialogue for error or not true information
+
   Future<dynamic> _display(BuildContext context) async {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Color(0xFF999999),
+            backgroundColor: kButtonColor,
             title: Text(
               "Add New Maintenance Information",
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Colors.white , fontSize:  20),
+              textAlign: TextAlign.center,
             ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
@@ -87,14 +105,13 @@ class _MaintenanceState extends State<Maintenance> {
                             lastDate: DateTime(2100),
                           );
                           if (date != null) {
-                            // widget._addInformationTitle;
                             widget._addInformationTitle.text = DateFormat.yMd().format(date);
                           }
                         },
                         child: Icon(Icons.calendar_today),
                       ),
                       hintStyle: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w400,
                           fontSize: 15),
                       enabledBorder: OutlineInputBorder(
@@ -102,7 +119,7 @@ class _MaintenanceState extends State<Maintenance> {
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black))),
                   style: TextStyle(
-                    color: Color(0xff222222),
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
@@ -116,7 +133,7 @@ class _MaintenanceState extends State<Maintenance> {
                   decoration: InputDecoration(
                     hintText: "Add long Description",
                     hintStyle: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.w400,
                         fontSize: 15),
                     enabledBorder: OutlineInputBorder(
@@ -127,7 +144,7 @@ class _MaintenanceState extends State<Maintenance> {
                     ),
                   ),
                   style: TextStyle(
-                    color: Color(0xff222222),
+                    color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
@@ -137,7 +154,7 @@ class _MaintenanceState extends State<Maintenance> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('ADD'),
                 onPressed: () {
@@ -148,14 +165,16 @@ class _MaintenanceState extends State<Maintenance> {
                     widget.MI.add(newInformation);
                     widget.MID.add(description);
                   });
+                  widget._addInformationTitle.clear();
                 },
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Color(0xff222222)),
+                  backgroundColor: MaterialStateProperty.all(kBackgroundColor),
                 ),
                 child: Text('CANCEL'),
                 onPressed: () {
+                  widget._addInformationTitle.clear();
                   Navigator.of(context).pop();
                 },
               )

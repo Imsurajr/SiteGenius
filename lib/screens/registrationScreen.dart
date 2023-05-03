@@ -91,7 +91,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.teal)),
                   child: Padding(
-                    padding: const EdgeInsets.all(14.0),
+                    padding:  EdgeInsets.all(14.0),
                     child: Text("Register" , style: kButtonTextStyle,),
                   ),
                   onPressed: () async {
@@ -112,6 +112,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       });
                     } catch (e) {
                       print(e);
+                      showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Error'),
+                          content: Text('$e' , style: kTextStyle,),
+                          actions: <Widget>[
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text('OK' , style: kButtonTextStyle,),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.teal, // Background color
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                      setState(() {
+                        showSpinner = false;
+                      });
                     }
                   })
             ],
