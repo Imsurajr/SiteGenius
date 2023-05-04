@@ -78,9 +78,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                //   ),
-                // ],
-                // )
               ],
             ),
             SizedBox(
@@ -120,7 +117,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   Navigator.pushNamed(context, RegistrationScreen.rid);
                 }),
             SizedBox(height: 20,),
-            ElevatedButton(
+            TextButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(Colors.white),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
