@@ -91,7 +91,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.teal)),
                   child: Padding(
-                    padding:  EdgeInsets.all(14.0),
+                    padding:  EdgeInsets.all(13.0),
                     child: Text("Register" , style: kButtonTextStyle,),
                   ),
                   onPressed: () async {
