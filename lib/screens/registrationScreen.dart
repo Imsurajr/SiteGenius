@@ -77,7 +77,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.teal)),
                   suffixIcon: GestureDetector(
-                      child: Icon(passwordShow == false ? Icons.visibility_off : Icons.visibility),
+                      child: Icon(passwordShow == false? Icons.visibility_off : Icons.visibility),
                       onTap: () {
                         setState(() {
                           passwordShow = !passwordShow;
@@ -86,7 +86,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
               SizedBox(
-                height: 24.0,
+                height: 22.0,
               ),
               ElevatedButton(
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.teal)),
