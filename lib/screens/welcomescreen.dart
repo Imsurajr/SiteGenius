@@ -85,7 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             ElevatedButton(
                 child: Padding(
-                  padding:  EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0),
                   child: Text(
                     "Login",
                     style: GoogleFonts.openSans(
@@ -103,7 +103,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             ),
             ElevatedButton(
                 child: Padding(
-                  padding:  EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0),
                   child: Text(
                     "Register",
                     style: GoogleFonts.openSans(
@@ -116,29 +116,42 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 onPressed: () {
                   Navigator.pushNamed(context, RegistrationScreen.rid);
                 }),
-            SizedBox(height: 20,),
-            TextButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.white),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
-              onPressed: () async {
+            SizedBox(
+              height: 20,
+            ),
+            // TextButton(
+            //   style: ButtonStyle(
+            //     backgroundColor: MaterialStateProperty.all(Colors.white),
+            //     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //       RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(20.0),
+            //       ),
+            //     ),
+            //   ),
+            //   onPressed: () async {
+            //     await signup();
+            //   },
+            //   child: Image(image: AssetImage('images/google.png')),
+            // ),
+
+            GestureDetector(
+              onTap: () async {
                 await signup();
               },
-              child: Image(image: AssetImage('images/google.png')),
-            )
-
+              child: CircleAvatar(
+                radius: 30,
+                child: Image(
+                  fit: BoxFit.fill,
+                  image: AssetImage('images/google.png'),
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-//C:\Users\hp\.android
-  // authorization k instance use krna hai android studio
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   Future<void> signup() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();

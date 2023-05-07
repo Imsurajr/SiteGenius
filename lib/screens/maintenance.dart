@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rrconstruction/constants.dart';
+import 'package:rrconstruction/features/models/maintenance_model.dart';
+
+import '../features/repository/maintenance_repository.dart';
 
 class Maintenance extends StatefulWidget {
-
-
   static const String mid = "maintenance_screen";
 
   TextEditingController _addInformationTitle = TextEditingController();
@@ -15,6 +17,12 @@ class Maintenance extends StatefulWidget {
     'Maintenance 2 long description',
     'Maintenance 3 long description'
   ];
+
+  final maintenanceRepo = Get.put(MaintenanceRepo());
+
+  void addMaintenance(String Maintenance) {
+    // maintenanceRepo.
+  }
 
   @override
   State<Maintenance> createState() => _MaintenanceState();
@@ -48,10 +56,17 @@ class _MaintenanceState extends State<Maintenance> {
                     elevation: 10,
                     color: kButtonColor,
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 8.0 , horizontal: 5),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
                       child: ListTile(
-                        title: Text(widget.MI[index] , style: kButtonTextStyle,),
-                        subtitle: Text(widget.MID[index] , style: kButtonTextStyle.copyWith(fontSize: 15),),
+                        title: Text(
+                          widget.MI[index],
+                          style: kButtonTextStyle,
+                        ),
+                        subtitle: Text(
+                          widget.MID[index],
+                          style: kButtonTextStyle.copyWith(fontSize: 15),
+                        ),
                       ),
                     ),
                   ),
@@ -61,12 +76,16 @@ class _MaintenanceState extends State<Maintenance> {
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 15),
-            child:FloatingActionButton(
+            child: FloatingActionButton(
               onPressed: () {
                 _display(context);
               },
               backgroundColor: Colors.white70,
-              child: Icon(Icons.add , size: 35, color: Colors.black87,),
+              child: Icon(
+                Icons.add,
+                size: 35,
+                color: Colors.black87,
+              ),
             ),
           )
         ],
@@ -84,7 +103,7 @@ class _MaintenanceState extends State<Maintenance> {
             backgroundColor: kButtonColor,
             title: Text(
               "Add New Maintenance Information",
-              style: TextStyle(color: Colors.white , fontSize:  20),
+              style: TextStyle(color: Colors.white, fontSize: 20),
               textAlign: TextAlign.center,
             ),
             content: Column(
@@ -105,7 +124,8 @@ class _MaintenanceState extends State<Maintenance> {
                             lastDate: DateTime(2100),
                           );
                           if (date != null) {
-                            widget._addInformationTitle.text = DateFormat.yMd().format(date);
+                            widget._addInformationTitle.text =
+                                DateFormat.yMd().format(date);
                           }
                         },
                         child: Icon(Icons.calendar_today),
@@ -165,6 +185,11 @@ class _MaintenanceState extends State<Maintenance> {
                     widget.MI.add(newInformation);
                     widget.MID.add(description);
                   });
+
+                  final Maintenances = MaintenanceModel(
+                      date: widget.MI.last.trim(),
+                      longDesc: widget.MID.last.trim());
+
                   widget._addInformationTitle.clear();
                 },
               ),
@@ -182,5 +207,4 @@ class _MaintenanceState extends State<Maintenance> {
           );
         });
   }
-
 }
