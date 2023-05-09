@@ -187,8 +187,8 @@ class _MaintenanceState extends State<Maintenance> {
                   });
 
                   final Maintenances = MaintenanceModel(
-                      date: widget.MI.last,
-                      longDesc: widget.MID.last);
+                      date: widget.MI.last.trim(),
+                      longDesc: widget.MID.last.trim());
 
                   widget._addInformationTitle.clear();
                 },
