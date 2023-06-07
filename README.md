@@ -1,6 +1,6 @@
 # BuildMate - A Construction App
 
-A Construction Site App using Flutter.
+A Construction Site App using Flutter and Firebase.
 
 ## Flutter Docs
 
