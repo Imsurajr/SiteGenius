@@ -1,4 +1,4 @@
-# BuildMate - A Construction App
+# SiteGenius - A Construction App
 
 A Construction Site App using Flutter and Firebase.
 
